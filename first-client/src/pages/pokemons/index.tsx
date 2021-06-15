@@ -1,3 +1,3 @@
 export function Pokemons() {
-  return <div>Pokemons</div>;
+  return <div>pokemons</div>;
 }
