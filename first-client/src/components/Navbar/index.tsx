@@ -1,36 +1,32 @@
 import { Fragment } from 'react';
+import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
+import Paper from '@material-ui/core/Paper';
+import Grid from '@material-ui/core/Grid';
 import { NavLink } from 'react-router-dom';
-import Drawer from '@material-ui/core/Drawer';
-import {
-  List,
-  ListItem,
-  Menu,
-  MenuList,
-  MenuItem,
-  Container,
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import NavButtons from './NavButtons';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-  },
-}));
+const useStyles = makeStyles((theme: Theme) =>
+  createStyles({
+    root: {
+      flexGrow: 1,
+    },
+    paper: {
+      padding: theme.spacing(0),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+    },
+  })
+);
 
-export function Navbar() {
+export default function Navbar() {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <Drawer variant='permanent'>
-        <MenuList>
-          <MenuItem>
-            <NavLink to='/'>Pokemons</NavLink>
-          </MenuItem>
-          <MenuItem>
-            <NavLink to='/berries'>Berries</NavLink>
-          </MenuItem>
-        </MenuList>
-      </Drawer>
+      <Grid item sm={12}>
+        <Paper className={classes.paper}>
+          <NavButtons />
+        </Paper>
+      </Grid>
     </div>
   );
 }

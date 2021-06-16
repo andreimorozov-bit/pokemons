@@ -1,29 +1,27 @@
-# README #
+# README
 
 This README would normally document whatever steps are necessary to get your application up and running.
 
-### What is this repository for? ###
+### Server
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+- install nestjs
 
-### How do I get set up? ###
+npm i -g @nestjs/cli
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+- install dependencies in first-server folder
 
-### Contribution guidelines ###
+npm install
 
-* Writing tests
-* Code review
-* Other guidelines
+- run in develpment mode
 
-### Who do I talk to? ###
+npm run start:dev
 
-* Repo owner or admin
-* Other community or team contact
+### Client
+
+- install dependencies in first-client folder
+
+npm install
+
+- run client in development mode
+
+npm run start
