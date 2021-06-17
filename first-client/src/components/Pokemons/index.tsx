@@ -1,13 +1,15 @@
+import { Fragment } from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import { PageWrapper } from '../../components/PageWrapper';
-import { Pokemons } from '../../components/Pokemons';
+import { PokemonsList } from './PokemonsList';
 
-export function PokemonsPage() {
+export function Pokemons() {
   return (
-    <PageWrapper>
-      <Pokemons />
-    </PageWrapper>
+    <Fragment>
+      <Typography variant='h4'>Pokemons</Typography>
+      <PokemonsList />
+    </Fragment>
   );
 }
