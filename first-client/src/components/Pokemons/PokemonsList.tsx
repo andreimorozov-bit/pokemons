@@ -10,6 +10,10 @@ import { PokemonType, PokemonsListType } from '../../models/types';
 import { getPokemons } from '../../api/pokemons';
 import { Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
+import { useDispatch } from 'react-redux';
+import { useTypedSelector, useTypedDispatch } from '../../hooks';
+import { next, back, fetchPokemons } from './pokemonsListSlice';
+import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -20,26 +24,17 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-// const dummyIds: string[] = [];
-// while (dummyIds.length < 40) {
-//   const dummyId = Math.floor(Math.random() * 10220);
-//   if (dummyId < 899 || (dummyId > 10001 && dummyId < 10220)) {
-//     dummyIds.push(dummyId.toString());
-//   }
-// }
-
 export const PokemonsList: React.FC = () => {
-  const [pokemonsData, setPokemonsData] =
-    useState<PokemonsListType | null>(null);
-  const [skip, setSkip] = useState<number>(0);
-  const [limit, setLimit] = useState<number>(40);
-  const [isLoading, setIsLoading] = useState(true);
+  const { skip, limit, data, loading } = useTypedSelector(
+    (state) => state.pokemonsList
+  );
+  const dispatch = useTypedDispatch();
+
   const classes = useStyles();
+
   useEffect(() => {
     const fetchPokemonsList = async () => {
-      const fetchedPokemonsData = await getPokemons(skip, limit);
-      setPokemonsData(fetchedPokemonsData);
-      setIsLoading(false);
+      dispatch(fetchPokemons({ skip, limit }));
     };
     fetchPokemonsList();
     window.scrollTo({
@@ -48,21 +43,20 @@ export const PokemonsList: React.FC = () => {
   }, [skip, limit]);
 
   const backHandler = () => {
-    const newSkip = skip - limit;
-    setSkip(newSkip >= 0 ? newSkip : 0);
-    setIsLoading(true);
+    if (skip > 0) {
+      dispatch(back());
+    }
   };
 
   const nextHandler = () => {
-    setSkip(skip + limit);
-    setIsLoading(true);
+    dispatch(next());
   };
 
   return (
     <div className={classes.root}>
-      {!isLoading && (
+      {!loading && (
         <List>
-          {pokemonsData?.pokemons.map((item) => {
+          {data?.pokemons.map((item) => {
             return (
               <Fragment key={item.id}>
                 <PokemonListItem pokemon={item} key={item.id} />
@@ -70,11 +64,12 @@ export const PokemonsList: React.FC = () => {
             );
           })}
 
-          <Button onClick={backHandler}>back</Button>
+          {skip > 0 ? <Button onClick={backHandler}>back</Button> : null}
           <Button onClick={nextHandler}>next</Button>
         </List>
       )}
-      {isLoading && <Typography variant='h5'>Loading...</Typography>}
+
+      {loading && <Typography variant='h5'>Loading...</Typography>}
     </div>
   );
 };

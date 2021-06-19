@@ -1,4 +1,6 @@
 import React from 'react';
+import { store } from './store';
+import { Provider } from 'react-redux';
 import './App.css';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
@@ -30,34 +32,36 @@ function App() {
   const classes = useStyles();
 
   return (
-    <Router>
-      <Container maxWidth='md'>
-        <div className={classes.root}>
-          <TopAppBar />
-          <Grid container spacing={1}>
-            <Grid item xs={12} sm={3}>
-              <Navbar />
+    <Provider store={store}>
+      <Router>
+        <Container maxWidth='md'>
+          <div className={classes.root}>
+            <TopAppBar />
+            <Grid container spacing={1}>
+              <Grid item xs={12} sm={3}>
+                <Navbar />
+              </Grid>
+              <Grid item xs={12} sm={9}>
+                <Switch>
+                  <Route path='/' exact>
+                    <PokemonsPage />
+                  </Route>
+                  <Route path='/pokemons' exact>
+                    <PokemonsPage />
+                  </Route>
+                  <Route path='/pokemons/:id' exact>
+                    <PokemonDetailPage />
+                  </Route>
+                  <Route path='/berries' exact>
+                    <BerriesPage />
+                  </Route>
+                </Switch>
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={9}>
-              <Switch>
-                <Route path='/' exact>
-                  <PokemonsPage />
-                </Route>
-                <Route path='/pokemons' exact>
-                  <PokemonsPage />
-                </Route>
-                <Route path='/pokemons/:id' exact>
-                  <PokemonDetailPage />
-                </Route>
-                <Route path='/berries' exact>
-                  <BerriesPage />
-                </Route>
-              </Switch>
-            </Grid>
-          </Grid>
-        </div>
-      </Container>
-    </Router>
+          </div>
+        </Container>
+      </Router>
+    </Provider>
   );
 }
 
