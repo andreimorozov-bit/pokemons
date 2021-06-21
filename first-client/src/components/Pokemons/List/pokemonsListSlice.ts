@@ -1,13 +1,13 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
-import type { RootState } from '../../store';
-import type { PokemonsListType } from '../../models/types';
-import type { PokemonType } from '../../models/types';
-import { getPokemons } from '../../api/pokemons';
+import type { RootState } from '../../../store';
+import type { PokemonsListType } from './types';
+import type { PokemonType } from './types';
+import { getPokemons } from '../../../api/pokemons';
 
 interface PokemonsListState {
   skip: number;
   limit: number;
-  data: PokemonsListType;
+  data: PokemonsListType | null;
   loading: boolean;
   error: string | null | undefined;
 }
@@ -58,6 +58,7 @@ export const pokemonsListSlice = createSlice({
     });
     builder.addCase(fetchPokemons.pending, (state, action) => {
       state.loading = true;
+      state.data = null;
     });
     builder.addCase(fetchPokemons.rejected, (state, action) => {
       state.error = action.error.message;

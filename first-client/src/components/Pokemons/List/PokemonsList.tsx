@@ -6,12 +6,12 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Divider from '@material-ui/core/Divider';
 import { PokemonListItem } from './PokemonsListItem';
-import { PokemonType, PokemonsListType } from '../../models/types';
-import { getPokemons } from '../../api/pokemons';
+import { PokemonType, PokemonsListType } from './types';
+import { getPokemons } from '../../../api/pokemons';
 import { Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
-import { useTypedSelector, useTypedDispatch } from '../../hooks';
+import { useTypedSelector, useTypedDispatch } from '../../../hooks/reduxHooks';
 import { next, back, fetchPokemons } from './pokemonsListSlice';
 import Paper from '@material-ui/core/Paper';
 
@@ -36,10 +36,10 @@ export const PokemonsList: React.FC = () => {
     const fetchPokemonsList = async () => {
       dispatch(fetchPokemons({ skip, limit }));
     };
+
     fetchPokemonsList();
-    window.scrollTo({
-      top: 0,
-    });
+
+    // window.scrollTo({ top: 200 });
   }, [skip, limit]);
 
   const backHandler = () => {
