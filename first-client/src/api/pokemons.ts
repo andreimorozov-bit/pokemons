@@ -6,11 +6,12 @@ import { pokemonDetailTransform } from '../util/stringUtil';
 export interface GetPokemonsDto {
   skip: number;
   limit: number;
+  search: string;
 }
 
-export const getPokemons = async ({ skip, limit }: GetPokemonsDto) => {
+export const getPokemons = async ({ skip, limit, search }: GetPokemonsDto) => {
   const response = await axios.get<PokemonsListType>(
-    `${POKEMONS_URL}?limit=${limit}&offset=${skip}`
+    `${POKEMONS_URL}?limit=${limit}&offset=${skip}&search=${search}`
   );
 
   return response.data;

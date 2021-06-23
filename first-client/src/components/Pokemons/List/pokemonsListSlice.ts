@@ -7,6 +7,7 @@ import { getPokemons } from '../../../api/pokemons';
 interface PokemonsListState {
   skip: number;
   limit: number;
+  search: string;
   data: PokemonsListType | null;
   loading: boolean;
   error: string | null | undefined;
@@ -16,6 +17,7 @@ interface PokemonsListState {
 const initialState: PokemonsListState = {
   skip: 0,
   limit: 20,
+  search: '',
   loading: false,
   error: null,
   count: 0,
@@ -30,6 +32,7 @@ const initialState: PokemonsListState = {
 interface PageData {
   skip: number;
   limit: number;
+  search: string;
 }
 
 export const fetchPokemons = createAsyncThunk(
@@ -54,6 +57,10 @@ export const pokemonsListSlice = createSlice({
     pageChange: (state, action) => {
       state.skip = action.payload;
     },
+    searchChange: (state, action) => {
+      state.skip = 0;
+      state.search = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
@@ -73,7 +80,8 @@ export const pokemonsListSlice = createSlice({
   },
 });
 
-export const { next, back, pageChange } = pokemonsListSlice.actions;
+export const { next, back, pageChange, searchChange } =
+  pokemonsListSlice.actions;
 
 export const selectSkip = (state: RootState) => state.pokemonsList.skip;
 

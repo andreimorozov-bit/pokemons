@@ -12,7 +12,6 @@ import { fetchPokemonById } from './pokemonDetailSlice';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import LinearProgress from '@material-ui/core/LinearProgress';
-import { Spinner } from '../../Spinner/Spinner';
 import { PokemonDetailSkeleton } from './PokemonDetailSkeleton';
 
 const useStyles = makeStyles((theme: Theme) =>

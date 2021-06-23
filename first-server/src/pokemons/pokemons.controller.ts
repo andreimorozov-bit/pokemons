@@ -6,11 +6,12 @@ export class PokemonsController {
   constructor(private readonly pokemonsService: PokemonsService) {}
 
   @Get()
-  getAllPokemons(
+  getPokemons(
     @Query('offset') offset?: number,
     @Query('limit') limit?: number,
+    @Query('search') search?: string,
   ) {
-    return this.pokemonsService.getAllPokemons(offset, limit);
+    return this.pokemonsService.getPokemons(offset, limit, search);
   }
 
   @Get('search')

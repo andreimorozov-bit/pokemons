@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const PokemonsList: React.FC = () => {
-  const { skip, limit, data, loading, count } = useTypedSelector(
+  const { skip, limit, data, loading, count, search } = useTypedSelector(
     (state) => state.pokemonsList
   );
   const dispatch = useTypedDispatch();
@@ -38,13 +38,13 @@ export const PokemonsList: React.FC = () => {
 
   useEffect(() => {
     const fetchPokemonsList = async () => {
-      dispatch(fetchPokemons({ skip, limit }));
+      dispatch(fetchPokemons({ skip, limit, search }));
     };
 
     fetchPokemonsList();
 
     // window.scrollTo({ top: 200 });
-  }, [skip, limit]);
+  }, [skip, limit, search]);
 
   const backHandler = () => {
     if (skip > 0) {
@@ -66,7 +66,14 @@ export const PokemonsList: React.FC = () => {
       {!loading && (
         <Fragment>
           <PageWrapper>
-            <Typography variant='h4'>Pokemons</Typography>
+            {search.length === 0 && (
+              <Typography variant='h4'>Pokemons</Typography>
+            )}
+            {search.length > 0 && (
+              <Typography variant='h4'>
+                {count} search results for "{search}"
+              </Typography>
+            )}
             <List>
               {data?.pokemons.map((item) => {
                 return (
