@@ -40,6 +40,7 @@ export const PokemonListItem: React.FC<PokemonListItemProps> = ({
 
   return (
     <Fragment>
+      <Divider variant='fullWidth' />
       <ListItem
         button
         component={Link}
@@ -53,7 +54,6 @@ export const PokemonListItem: React.FC<PokemonListItemProps> = ({
           <Typography variant='h6'>{name}</Typography>
         </ListItemText>
       </ListItem>
-      <Divider variant='fullWidth' />
     </Fragment>
   );
 };

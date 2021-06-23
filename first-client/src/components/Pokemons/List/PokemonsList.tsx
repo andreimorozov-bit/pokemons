@@ -12,8 +12,12 @@ import { Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
 import { useTypedSelector, useTypedDispatch } from '../../../hooks/reduxHooks';
-import { next, back, fetchPokemons } from './pokemonsListSlice';
+import { next, back, fetchPokemons, pageChange } from './pokemonsListSlice';
 import Paper from '@material-ui/core/Paper';
+import Container from '@material-ui/core/Container';
+import { PokemonsListSkeleton } from './PokemonsListSkeleton';
+import { Pagination } from '../../Pagination/Pagination';
+import { PageWrapper } from '../../PageWrapper';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -25,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const PokemonsList: React.FC = () => {
-  const { skip, limit, data, loading } = useTypedSelector(
+  const { skip, limit, data, loading, count } = useTypedSelector(
     (state) => state.pokemonsList
   );
   const dispatch = useTypedDispatch();
@@ -52,24 +56,41 @@ export const PokemonsList: React.FC = () => {
     dispatch(next());
   };
 
+  const onPageChange = (pageNumber: number) => {
+    const newSkip = limit * pageNumber - limit;
+    dispatch(pageChange(newSkip));
+  };
+
   return (
     <div className={classes.root}>
       {!loading && (
-        <List>
-          {data?.pokemons.map((item) => {
-            return (
-              <Fragment key={item.id}>
-                <PokemonListItem pokemon={item} key={item.id} />
-              </Fragment>
-            );
-          })}
+        <Fragment>
+          <PageWrapper>
+            <Typography variant='h4'>Pokemons</Typography>
+            <List>
+              {data?.pokemons.map((item) => {
+                return (
+                  <Fragment key={item.id}>
+                    <PokemonListItem pokemon={item} key={item.id} />
+                  </Fragment>
+                );
+              })}
+            </List>
+          </PageWrapper>
 
-          {skip > 0 ? <Button onClick={backHandler}>back</Button> : null}
-          <Button onClick={nextHandler}>next</Button>
-        </List>
+          <Container>
+            <Pagination
+              onPageChange={onPageChange}
+              totalCount={count}
+              pageSize={limit}
+              siblingCount={2}
+              currentPage={skip / limit + 1}
+            />
+          </Container>
+        </Fragment>
       )}
 
-      {loading && <Typography variant='h5'>Loading...</Typography>}
+      {loading && <PokemonsListSkeleton />}
     </div>
   );
 };

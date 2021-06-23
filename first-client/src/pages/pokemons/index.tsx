@@ -5,9 +5,5 @@ import { PageWrapper } from '../../components/PageWrapper';
 import { Pokemons } from '../../components/Pokemons/List';
 
 export function PokemonsPage() {
-  return (
-    <PageWrapper>
-      <Pokemons />
-    </PageWrapper>
-  );
+  return <Pokemons />;
 }

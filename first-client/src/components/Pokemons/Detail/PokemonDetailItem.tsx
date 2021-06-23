@@ -11,6 +11,9 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { fetchPokemonById } from './pokemonDetailSlice';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
+import LinearProgress from '@material-ui/core/LinearProgress';
+import { Spinner } from '../../Spinner/Spinner';
+import { PokemonDetailSkeleton } from './PokemonDetailSkeleton';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -22,6 +25,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     typography: {
       textTransform: 'capitalize',
+      marginBottom: '1rem',
     },
   })
 );
@@ -46,38 +50,35 @@ export const PokemonDetailItem: React.FC<PokemonDetailItemProps> = ({ id }) => {
     history.push('/pokemons');
   };
 
-  if (!loading && data) {
-    return (
-      <Fragment>
-        <Grid container spacing={0}>
-          <Grid item xs={12}>
-            <Typography className={classes.typography} variant='h4'>
-              {data.name}
-            </Typography>
+  return (
+    <Fragment>
+      {!loading && data && (
+        <Fragment>
+          <Grid container spacing={0}>
+            <Grid item xs={12}>
+              <Typography className={classes.typography} variant='h4'>
+                {data.name}
+              </Typography>
+            </Grid>
           </Grid>
-        </Grid>
-        <Grid item sm={12} md={7}>
-          <PokemonCard data={data} />
-        </Grid>
-        <Grid item xs={12} sm={12} md={5}>
-          <PokemonStats data={data} />
-        </Grid>
-        <Grid item xs={12}>
-          <IconButton
-            aria-label='back'
-            className={classes.margin}
-            onClick={handleBackClick}
-          >
-            <ArrowBackIcon fontSize='large' />
-          </IconButton>
-        </Grid>
-      </Fragment>
-    );
-  } else {
-    return (
-      <Container>
-        <Typography variant='h5'>Loading...</Typography>
-      </Container>
-    );
-  }
+          <Grid item sm={12} md={7}>
+            <PokemonCard data={data} />
+          </Grid>
+          <Grid item xs={12} sm={12} md={5}>
+            <PokemonStats data={data} />
+          </Grid>
+          <Grid item xs={12}>
+            <IconButton
+              aria-label='back'
+              className={classes.margin}
+              onClick={handleBackClick}
+            >
+              <ArrowBackIcon fontSize='large' />
+            </IconButton>
+          </Grid>
+        </Fragment>
+      )}
+      {loading && <PokemonDetailSkeleton id={id} />}
+    </Fragment>
+  );
 };

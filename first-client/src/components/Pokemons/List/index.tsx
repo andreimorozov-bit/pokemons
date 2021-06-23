@@ -8,7 +8,6 @@ import { PokemonsList } from './PokemonsList';
 export function Pokemons() {
   return (
     <Fragment>
-      <Typography variant='h4'>Pokemons</Typography>
       <PokemonsList />
     </Fragment>
   );

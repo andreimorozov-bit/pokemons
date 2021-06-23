@@ -1,7 +1,6 @@
 import { useHistory, useParams } from 'react-router-dom';
 import { PokemonDetail } from '../../components/Pokemons/Detail';
 import { PageWrapper } from '../../components/PageWrapper';
-import Typography from '@material-ui/core/Typography';
 
 export function PokemonDetailPage() {
   const params: { id: string } = useParams();

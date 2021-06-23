@@ -10,6 +10,7 @@ interface PokemonsListState {
   data: PokemonsListType | null;
   loading: boolean;
   error: string | null | undefined;
+  count: number;
 }
 
 const initialState: PokemonsListState = {
@@ -17,6 +18,7 @@ const initialState: PokemonsListState = {
   limit: 20,
   loading: false,
   error: null,
+  count: 0,
   data: {
     count: 0,
     next: null,
@@ -49,11 +51,15 @@ export const pokemonsListSlice = createSlice({
       const newSkip = state.skip - state.limit;
       state.skip = newSkip >= 0 ? newSkip : 0;
     },
+    pageChange: (state, action) => {
+      state.skip = action.payload;
+    },
   },
 
   extraReducers: (builder) => {
     builder.addCase(fetchPokemons.fulfilled, (state, { payload }) => {
       state.data = payload;
+      state.count = payload.count;
       state.loading = false;
     });
     builder.addCase(fetchPokemons.pending, (state, action) => {
@@ -67,7 +73,7 @@ export const pokemonsListSlice = createSlice({
   },
 });
 
-export const { next, back } = pokemonsListSlice.actions;
+export const { next, back, pageChange } = pokemonsListSlice.actions;
 
 export const selectSkip = (state: RootState) => state.pokemonsList.skip;
 
