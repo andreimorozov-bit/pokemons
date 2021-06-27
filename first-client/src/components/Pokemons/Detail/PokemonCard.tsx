@@ -34,7 +34,13 @@ export const PokemonCard: React.FC<PokemonCardProps> = ({ data }) => {
       </Grid>
       <Grid item xs={12}>
         {data.types.map((item) => {
-          return <Chip label={item.type.name} className={classes.chip} />;
+          return (
+            <Chip
+              label={item.type.name}
+              className={classes.chip}
+              key={item.type.url}
+            />
+          );
         })}
       </Grid>
     </Fragment>

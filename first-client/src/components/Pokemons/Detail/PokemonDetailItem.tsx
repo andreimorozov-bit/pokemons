@@ -13,6 +13,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import LinearProgress from '@material-ui/core/LinearProgress';
 import { PokemonDetailSkeleton } from './PokemonDetailSkeleton';
+import { PokemonAbilities } from './PokemonAbilities';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -65,6 +66,7 @@ export const PokemonDetailItem: React.FC<PokemonDetailItemProps> = ({ id }) => {
           </Grid>
           <Grid item xs={12} sm={12} md={5}>
             <PokemonStats data={data} />
+            <PokemonAbilities data={data} />
           </Grid>
           <Grid item xs={12}>
             <IconButton

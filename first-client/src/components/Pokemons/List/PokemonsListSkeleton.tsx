@@ -13,7 +13,6 @@ import { getPokemons } from '../../../api/pokemons';
 import { Button } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch } from 'react-redux';
-import { useTypedSelector, useTypedDispatch } from '../../../hooks/reduxHooks';
 import { next, back, fetchPokemons } from './pokemonsListSlice';
 import Paper from '@material-ui/core/Paper';
 
@@ -42,9 +41,7 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 export const PokemonsListSkeleton: React.FC = () => {
-  const limit = useTypedSelector((state) => state.pokemonsList.limit);
   const dummyArray = new Array(20).fill(0).map((item, index) => index);
-  console.log(dummyArray);
 
   const classes = useStyles();
 

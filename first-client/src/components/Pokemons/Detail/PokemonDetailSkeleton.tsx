@@ -74,7 +74,7 @@ export const PokemonDetailSkeleton: React.FC<PokemonDetailItemProps> = ({
         <Grid item xs={12} sm={12} md={5}>
           <div className={classes.title}></div>
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => (
-            <div className={classes.text}></div>
+            <div className={classes.text} key={item}></div>
           ))}
         </Grid>
         <Grid item xs={12}>

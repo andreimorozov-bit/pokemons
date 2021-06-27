@@ -2,6 +2,7 @@ export type Ability = {
   ability: {
     name: string;
     url: string;
+    description: string;
   };
   isHidden: boolean;
   slot: number;

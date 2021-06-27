@@ -83,20 +83,27 @@ export const Pagination: React.FC<PaginationProps> = (props) => {
           <ChevronLeft className={classes.icon} />
         </Button>
       )}
-      {paginationRange.map((pageNumber) => {
+      {paginationRange.map((pageNumber, index) => {
         if (pageNumber === DOTS) {
-          return <Button className={classes.button}>&#8230;</Button>;
+          return (
+            <Button className={classes.button} key={index}>
+              &#8230;
+            </Button>
+          );
         }
 
         if (pageNumber === currentPage) {
           return (
-            <Button className={classes.currentButton}>{pageNumber}</Button>
+            <Button className={classes.currentButton} key={index}>
+              {pageNumber}
+            </Button>
           );
         }
         return (
           <Button
             className={classes.button}
             onClick={() => onPageChange(pageNumber)}
+            key={index}
           >
             {pageNumber}
           </Button>

@@ -1,4 +1,4 @@
-export interface PokemonsListItem {
+export interface Pokemon {
   name: string;
   url: string;
   pictureSmall: string;
@@ -9,5 +9,5 @@ export interface PokemonsList {
   count: number;
   next: string;
   previous: string;
-  pokemons: PokemonsListItem[];
+  pokemons: Pokemon[];
 }

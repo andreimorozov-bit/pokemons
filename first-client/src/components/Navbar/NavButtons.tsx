@@ -44,7 +44,7 @@ export default function NavButtons() {
 
   const onSearchClick = () => {
     if (searchInput.length > 0) {
-      dispatch(searchChange(searchInput));
+      dispatch(searchChange(searchInput.trim().toLowerCase()));
       setSearchInput('');
       history.push('/pokemons');
     }

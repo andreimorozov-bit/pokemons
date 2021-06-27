@@ -55,11 +55,15 @@ export const pokemonsListSlice = createSlice({
       state.skip = newSkip >= 0 ? newSkip : 0;
     },
     pageChange: (state, action) => {
-      state.skip = action.payload;
+      state.skip = Math.floor(action.payload);
     },
     searchChange: (state, action) => {
       state.skip = 0;
       state.search = action.payload;
+    },
+    pageSizeChange: (state, action) => {
+      state.limit = Math.floor(action.payload);
+      state.skip = Math.floor(state.skip / action.payload) * action.payload;
     },
   },
 
@@ -80,7 +84,7 @@ export const pokemonsListSlice = createSlice({
   },
 });
 
-export const { next, back, pageChange, searchChange } =
+export const { next, back, pageChange, searchChange, pageSizeChange } =
   pokemonsListSlice.actions;
 
 export const selectSkip = (state: RootState) => state.pokemonsList.skip;

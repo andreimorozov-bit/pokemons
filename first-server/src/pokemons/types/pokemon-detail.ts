@@ -7,6 +7,16 @@ export interface Ability {
   slot: number;
 }
 
+export interface NewAbility {
+  ability: {
+    name: string;
+    url: string;
+    description: string;
+  };
+  isHidden: boolean;
+  slot: number;
+}
+
 export interface Stat {
   baseStat: number;
   effort: number;

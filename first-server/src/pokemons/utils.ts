@@ -4,6 +4,7 @@ import {
   POKEMON_PICTURE_URL,
   POKEMON_PICTURE_SMALL_URL,
 } from 'src/constants/settings';
+import { PokemonsFilterDto } from './pokemons-filter-dto';
 import {
   PokemonDetail,
   Stat,
@@ -30,6 +31,20 @@ export const parsePokemonsList = (pokemonsListData): PokemonsList => {
   };
 
   return pokemonsList;
+};
+
+export const filterPokemonsList = (pokemonsFilterDto: PokemonsFilterDto) => {
+  const { pokemons, search } = pokemonsFilterDto;
+  const filteredPokemons = pokemons
+    .filter((item) => {
+      return item.name.indexOf(search) >= 0;
+    })
+    .sort((a, b) => {
+      if (a.name.toLowerCase() < b.name.toLowerCase()) {
+        return -1;
+      } else return 1;
+    });
+  return filteredPokemons;
 };
 
 export const parsePokemonDetail = (pokemonDetailData): PokemonDetail => {

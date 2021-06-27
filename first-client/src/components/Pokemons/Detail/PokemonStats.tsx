@@ -1,6 +1,7 @@
 import Grid from '@material-ui/core/Grid';
 import { PokemonDetail } from './types';
 import TableContainer from '@material-ui/core/TableContainer';
+import Table from '@material-ui/core/Table';
 import TableRow from '@material-ui/core/TableRow';
 import TableHead from '@material-ui/core/TableHead';
 import TableCell from '@material-ui/core/TableCell';
@@ -31,6 +32,9 @@ const useStyles = makeStyles({
     fontSize: '1rem',
     borderBottom: '1px solid rgba(224, 224, 224, 1)',
   },
+  table: {
+    maxWidth: '15rem',
+  },
 });
 
 interface PokemonStatsProps {
@@ -43,32 +47,34 @@ export const PokemonStats: React.FC<PokemonStatsProps> = ({ data }) => {
     <div>
       <Typography variant='h5'>Stats</Typography>
       <TableContainer className={classes.tableContainer}>
-        <TableBody>
-          {data.stats.map((item) => {
-            return (
-              <TableRow>
-                <TableHead component='th' className={classes.tableHead}>
-                  {item.stat.name}
-                </TableHead>
-                <TableCell className={classes.tableCell}>
-                  {item.baseStat}
-                </TableCell>
-              </TableRow>
-            );
-          })}
-          <TableRow>
-            <TableHead component='th' className={classes.tableHead}>
-              weight
-            </TableHead>
-            <TableCell className={classes.tableCell}>{data.weight}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableHead component='th' className={classes.tableHead}>
-              height
-            </TableHead>
-            <TableCell className={classes.tableCell}>{data.height}</TableCell>
-          </TableRow>
-        </TableBody>
+        <Table className={classes.table}>
+          <TableBody>
+            {data.stats.map((item) => {
+              return (
+                <TableRow key={item.stat.name}>
+                  <TableHead component='th' className={classes.tableHead}>
+                    {item.stat.name}
+                  </TableHead>
+                  <TableCell className={classes.tableCell}>
+                    {item.baseStat}
+                  </TableCell>
+                </TableRow>
+              );
+            })}
+            <TableRow>
+              <TableHead component='th' className={classes.tableHead}>
+                weight
+              </TableHead>
+              <TableCell className={classes.tableCell}>{data.weight}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableHead component='th' className={classes.tableHead}>
+                height
+              </TableHead>
+              <TableCell className={classes.tableCell}>{data.height}</TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
       </TableContainer>
     </div>
   );

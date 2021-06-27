@@ -18,6 +18,7 @@ import Container from '@material-ui/core/Container';
 import { PokemonsListSkeleton } from './PokemonsListSkeleton';
 import { Pagination } from '../../Pagination/Pagination';
 import { PageWrapper } from '../../PageWrapper';
+import { PageSizeSelector } from './PageSizeSelector';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -46,18 +47,9 @@ export const PokemonsList: React.FC = () => {
     // window.scrollTo({ top: 200 });
   }, [skip, limit, search]);
 
-  const backHandler = () => {
-    if (skip > 0) {
-      dispatch(back());
-    }
-  };
-
-  const nextHandler = () => {
-    dispatch(next());
-  };
-
   const onPageChange = (pageNumber: number) => {
-    const newSkip = limit * pageNumber - limit;
+    const newSkip =
+      Math.floor(limit) * Math.floor(pageNumber) - Math.floor(limit);
     dispatch(pageChange(newSkip));
   };
 
@@ -74,6 +66,7 @@ export const PokemonsList: React.FC = () => {
                 {count} search results for "{search}"
               </Typography>
             )}
+            <PageSizeSelector />
             <List>
               {data?.pokemons.map((item) => {
                 return (
@@ -91,7 +84,7 @@ export const PokemonsList: React.FC = () => {
               totalCount={count}
               pageSize={limit}
               siblingCount={2}
-              currentPage={skip / limit + 1}
+              currentPage={Math.floor(skip / limit + 1)}
             />
           </Container>
         </Fragment>

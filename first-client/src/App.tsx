@@ -14,6 +14,8 @@ import { BerriesPage } from './pages/berries';
 import Navbar from './components/Navbar';
 import TopAppBar from './components/TopAppBar';
 import { PokemonDetailPage } from './pages/pokemons/Detail';
+import { ThemeProvider } from '@material-ui/styles';
+import theme from './theme';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -33,34 +35,36 @@ function App() {
 
   return (
     <Provider store={store}>
-      <Router>
-        <Container maxWidth='md'>
-          <div className={classes.root}>
-            <TopAppBar />
-            <Grid container spacing={1}>
-              <Grid item xs={12} sm={3}>
-                <Navbar />
+      <ThemeProvider theme={theme}>
+        <Router>
+          <Container maxWidth='md'>
+            <div className={classes.root}>
+              <TopAppBar />
+              <Grid container spacing={1}>
+                <Grid item xs={12} sm={3}>
+                  <Navbar />
+                </Grid>
+                <Grid item xs={12} sm={9}>
+                  <Switch>
+                    <Route path='/' exact>
+                      <PokemonsPage />
+                    </Route>
+                    <Route path='/pokemons' exact>
+                      <PokemonsPage />
+                    </Route>
+                    <Route path='/pokemons/:id' exact>
+                      <PokemonDetailPage />
+                    </Route>
+                    <Route path='/berries' exact>
+                      <BerriesPage />
+                    </Route>
+                  </Switch>
+                </Grid>
               </Grid>
-              <Grid item xs={12} sm={9}>
-                <Switch>
-                  <Route path='/' exact>
-                    <PokemonsPage />
-                  </Route>
-                  <Route path='/pokemons' exact>
-                    <PokemonsPage />
-                  </Route>
-                  <Route path='/pokemons/:id' exact>
-                    <PokemonDetailPage />
-                  </Route>
-                  <Route path='/berries' exact>
-                    <BerriesPage />
-                  </Route>
-                </Switch>
-              </Grid>
-            </Grid>
-          </div>
-        </Container>
-      </Router>
+            </div>
+          </Container>
+        </Router>
+      </ThemeProvider>
     </Provider>
   );
 }
