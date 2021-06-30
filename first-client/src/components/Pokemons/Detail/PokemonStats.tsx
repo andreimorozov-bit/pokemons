@@ -1,4 +1,3 @@
-import Grid from '@material-ui/core/Grid';
 import { PokemonDetail } from './types';
 import TableContainer from '@material-ui/core/TableContainer';
 import Table from '@material-ui/core/Table';
@@ -8,8 +7,6 @@ import TableCell from '@material-ui/core/TableCell';
 import TableBody from '@material-ui/core/TableBody';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles({
   tableContainer: {

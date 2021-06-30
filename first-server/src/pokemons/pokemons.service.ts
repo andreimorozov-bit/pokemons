@@ -1,10 +1,6 @@
 import { HttpService, Injectable, NotFoundException } from '@nestjs/common';
 import { Cache } from 'memory-cache';
-import {
-  POKEMON_API_URL,
-  POKEMON_PICTURE_URL,
-  POKEMON_PICTURE_SMALL_URL,
-} from 'src/constants/settings';
+import { POKEMON_API_URL } from 'src/constants/settings';
 import { PokemonsList } from './types/pokemons-list';
 import {
   parsePokemonDetail,

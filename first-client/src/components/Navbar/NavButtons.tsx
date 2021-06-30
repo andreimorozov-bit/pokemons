@@ -6,7 +6,6 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import { makeStyles } from '@material-ui/core/styles';
 import InputBase from '@material-ui/core/InputBase';
 import SearchIcon from '@material-ui/icons/Search';
-import IconButton from '@material-ui/core/IconButton';
 import { useTypedDispatch, useTypedSelector } from '../../hooks/reduxHooks';
 import { searchChange } from '../Pokemons/List/pokemonsListSlice';
 import Grid from '@material-ui/core/Grid';

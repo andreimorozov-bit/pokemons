@@ -4,14 +4,12 @@ import { Fragment } from 'react';
 import { PokemonCard } from './PokemonCard';
 import { PokemonStats } from './PokemonStats';
 import { useTypedSelector, useTypedDispatch } from '../../../hooks/reduxHooks';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { fetchPokemonById } from './pokemonDetailSlice';
 import Typography from '@material-ui/core/Typography';
-import Container from '@material-ui/core/Container';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import { PokemonDetailSkeleton } from './PokemonDetailSkeleton';
 import { PokemonAbilities } from './PokemonAbilities';
 
@@ -44,7 +42,7 @@ export const PokemonDetailItem: React.FC<PokemonDetailItemProps> = ({ id }) => {
       dispatch(fetchPokemonById(id));
     };
     fetchPokemonDetail();
-  }, []);
+  }, [id, dispatch]);
 
   const handleBackClick = () => {
     history.push('/pokemons');

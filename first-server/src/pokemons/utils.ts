@@ -1,16 +1,6 @@
-import { ADDRGETNETWORKPARAMS } from 'dns';
-import {
-  POKEMON_API_URL,
-  POKEMON_PICTURE_URL,
-  POKEMON_PICTURE_SMALL_URL,
-} from 'src/constants/settings';
+import { POKEMON_PICTURE_SMALL_URL } from 'src/constants/settings';
 import { PokemonsFilterDto } from './pokemons-filter-dto';
-import {
-  PokemonDetail,
-  Stat,
-  Ability,
-  PokemonType,
-} from './types/pokemon-detail';
+import { PokemonDetail } from './types/pokemon-detail';
 import { PokemonsList } from './types/pokemons-list';
 
 export const parsePokemonsList = (pokemonsListData): PokemonsList => {

@@ -1,15 +1,9 @@
 import Grid from '@material-ui/core/Grid';
-import { useEffect } from 'react';
 import { Fragment } from 'react';
-import { PokemonCard } from './PokemonCard';
-import { PokemonStats } from './PokemonStats';
-import { useTypedSelector, useTypedDispatch } from '../../../hooks/reduxHooks';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import IconButton from '@material-ui/core/IconButton';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { fetchPokemonById } from './pokemonDetailSlice';
-import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme: Theme) =>

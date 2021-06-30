@@ -1,7 +1,6 @@
-import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import type { RootState } from '../../../store';
 import type { PokemonsListType } from './types';
-import type { PokemonType } from './types';
 import { getPokemons } from '../../../api/pokemons';
 
 interface PokemonsListState {

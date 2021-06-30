@@ -1,20 +1,10 @@
-import { Fragment, useState, useEffect } from 'react';
-import axios, { AxiosResponse } from 'axios';
+import { Fragment } from 'react';
 import { createStyles, Theme, makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
 import Divider from '@material-ui/core/Divider';
-import { PokemonListItem } from './PokemonsListItem';
-import { PokemonType, PokemonsListType } from './types';
-import { getPokemons } from '../../../api/pokemons';
-import { Button } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
-import { useDispatch } from 'react-redux';
-import { next, back, fetchPokemons } from './pokemonsListSlice';
-import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

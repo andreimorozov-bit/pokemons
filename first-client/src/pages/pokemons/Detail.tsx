@@ -1,4 +1,4 @@
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { PokemonDetail } from '../../components/Pokemons/Detail';
 import { PageWrapper } from '../../components/PageWrapper';
 

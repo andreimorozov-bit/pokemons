@@ -1,4 +1,4 @@
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { PokemonsListType } from '../components/Pokemons/List/types';
 import { POKEMONS_URL } from '../constants/settings';
 import { pokemonDetailTransform } from '../util/stringUtil';

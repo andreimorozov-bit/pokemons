@@ -4,7 +4,7 @@ import {
   SerializedError,
 } from '@reduxjs/toolkit';
 import { getPokemonById } from '../../../api/pokemons';
-import { PokemonDetail, Stat, Ability, PokemonType } from './types';
+import { PokemonDetail } from './types';
 
 interface PokemonDetailState {
   loading: boolean;

@@ -1,6 +1,5 @@
 import Grid from '@material-ui/core/Grid';
 import { PokemonDetail } from './types';
-import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { Fragment } from 'react';
@@ -26,7 +25,7 @@ interface PokemonCardProps {
 
 export const PokemonCard: React.FC<PokemonCardProps> = ({ data }) => {
   const classes = useStyles();
-  const { name, pictureOfficial, height, weight, types } = data;
+  const { name, pictureOfficial } = data;
   return (
     <Fragment>
       <Grid item xs={12}>
